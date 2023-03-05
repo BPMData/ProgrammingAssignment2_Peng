@@ -83,4 +83,4 @@ n2 %*% m2
 # to some rounding errors somewhere! (At least it did on my machine!)
 
 
-# Thanks for reading! Good luck on the rest of the course!
+# Thanks for reading! Good luck on the rest of the course!!
