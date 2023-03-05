@@ -14,12 +14,14 @@ makeMatrix <- function(x = matrix()) { #This line formally defines x, so that we
       getsolve <- function() m                # solve is only created by cacheSolve below.
       list(set = set, get = get,
            setsolve = setsolve,
-           getsolve = getsolve) # Name our subfunctions so we can access them with $ rather than [[]].
+           getsolve = getsolve) # Name our subfunctions so we can access them with $ by name rather than 
+                                # using [[]] and having to use positional index numbers, i.e. set = 1, getsolve = 4, etc.
 }
 
 ## Now that we have the object created by makeMatrix and the functions created by
 # makeMatrix, accessible with $, we need to actually solve for a matrix using cacheSolve.
-# Note cacheSolve will ONLY accept a matrix object created by makeMatrix.
+# Note cacheSolve will ONLY accept a matrix object created by makeMatrix, because cacheSolve uses
+# the functions $getsolve() and $setsolve() that a regular matrix (not created by makeMatrix) wouldn't contain.
 
 cacheSolve <- function(x, ...) {
       m <- x$getsolve() # We're asking cacheSolve to see if the matrix
