@@ -1,3 +1,11 @@
+IF YOU'RE GRADING THIS ASSIGNMENT:
+
+You ONLY need to look at the file "cachematrix_Final_BPMData.R".
+
+Thank you!!! The rest below is just the same stuff as was in the master.
+
+####
+
 “Line added from GitHub.”
 
 ### Introduction
