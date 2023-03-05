@@ -3,7 +3,7 @@
 # access using the $ subsetting operator on the object created by makeMatrix.
 
 makeMatrix <- function(x = matrix()) { #This line formally defines x, so that we
-                                    # don't need to actually run $setsolve necessarily.
+                                    # don't need to actually run $set necessarily.
       m <- NULL
       set <- function(y) {
             x <<- y # Critically, these are superoperators, assigning
