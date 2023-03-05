@@ -32,6 +32,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 }
 
+#### ACTUAL SOLUTION STARTS HERE ####
 # We are first going to define a null Matrix that
 # We can input data into, as well as four subfunctions we can
 # access using the $ subsetting operator.
@@ -71,11 +72,65 @@ testmatrix <- matrix(1:4,2,2)
 
 testmatrix
 
+# Two ways to use cache solve - #1, a little less obvious
+w <- makeMatrix()
+
+w$set(testmatrix)
+
+cacheSolve(w)
+
+# #2, probably the better way.
+
 h <- makeMatrix(testmatrix)
 
 cacheSolve(h)
 
+# try it again - we should get our cached retrieval message.
 
+cacheSolve(h)
+
+#### ACTUAL SOLUTION ENDS HERE ####
+
+# Here's a test case based on the test matrices provided by Alan Berger in the
+# Coursera forum at the link below:
+
+# https://www.coursera.org/learn/r-programming/discussions/forums/_ZerTCj2EeaZ8Apto8QB_w/threads/ePlO1eMdEeahzg7_4P4Vvg
+
+m1 <- matrix(c(1/2, -1/4, -1, 3/4), nrow = 2, ncol = 2)
+
+m1
+
+testing <- h <- makeMatrix(m1)
+# First run:
+cacheSolve(testing)
+# Second run to see if we get our cached retrieval message:
+cacheSolve(testing)
+
+# Let's just multiply the matrices to see if we really do get the identity matrix:
+n1 <- cacheSolve(testing)
+
+print(m1 %*% n1)
+
+# Yep!
+
+# One more test to see if our setters are working properly.
+
+n2 <- matrix(c(5/8, -1/8, -7/8, 3/8), nrow = 2, ncol = 2)
+
+testing$set(n2)
+
+# Now if we run cacheSolve on testing again, we should get the inversion of matrix
+# n2, not matrix n1. All without having to run the function makeMatrix again!
+cacheSolve(testing)
+m2 <- cacheSolve(testing)
+# Is this really the inversion of matrix n2? Let's find out.
+
+n2 %*% m2
+#Yep! Though R does give us 1 and 0 written in weird scientific notation due
+# to some rounding errors somewhere! (At least it did on my machine!)
+
+
+# This stuff below is just for reference, you don't need this.
 cachemean <- function(x, ...) {
       m <- x$getmean()
       if(!is.null(m)) {
